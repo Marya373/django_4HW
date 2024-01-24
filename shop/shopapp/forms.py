@@ -3,7 +3,11 @@ from shopapp.models import Product
 
 class LoadImageForProduct(forms.Form):
 
-    product = forms.ModelChoiceField(queryset=Product.objects.all(), widget=forms.Select(attrs={'class': 'form-control'})),
+    product = forms.ModelChoiceField(queryset=Product.objects.all(), 
+                                     empty_label='Выберите продукт для загрузки изображения',
+                                     widget=forms.Select(attrs={'class': 'form-control'}),
+                                     label='Товар:'
+                                     )
                                      
-    image = forms.IntegerField(widget=forms.FileInput())
+    image = forms.ImageField(widget=forms.FileInput())
 

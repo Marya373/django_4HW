@@ -11,3 +11,8 @@ class LoadImageForProduct(forms.Form):
                                      
     image = forms.ImageField(widget=forms.FileInput())
 
+# class AddProduct(forms.ModelForm):
+#     class Meta:
+#         model = Product
+#         fields = ['name', 'description', 'price', 'quantity', 'image']
+

@@ -8,8 +8,6 @@ from django.core.files.storage import FileSystemStorage
 from django.shortcuts import render, get_object_or_404
 
 
-
-
 def form_for_load_image_for_product(request):
 
     if request.method == 'POST':

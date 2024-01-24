@@ -10,6 +10,7 @@ from .forms import LoadImageForProduct
 
 
 def form_for_load_image_for_product(request):
+    
     if request.method == 'POST':
         form = LoadImageForProduct(request.POST, request.FILES)
 

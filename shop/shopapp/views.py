@@ -1,10 +1,33 @@
 from django.views import View
-from shopapp.models import Client, Order
+from shopapp.models import Client, Order, Product
 from datetime import datetime, timedelta
 from django.views.generic import TemplateView
 from django.http import HttpResponse
-
+from shopapp.forms import LoadImageForProduct
+from django.core.files.storage import FileSystemStorage
 from django.shortcuts import render, get_object_or_404
+from .forms import LoadImageForProduct
+
+
+def form_for_load_image_for_product(request):
+    if request.method == 'POST':
+        form = LoadImageForProduct(request.POST, request.FILES)
+
+        if form.is_valid():
+
+            image_file = request.FILES['image']
+
+            product = form.cleaned_data['product']
+            product = Product.objects.get(pk=product.pk)
+
+            if product:
+                product.image.save(image_file.name, image_file)
+                product.save()
+
+
+def page_not_found(request, exception):
+    return render(request, "shopapp/404.html", status=404)
+
 
 def hello(request):
     return HttpResponse('Привет!')
@@ -91,5 +114,6 @@ def get_list_products_by_customer(request, name_client: str):
     return render(request, "shopapp/get_list_products_by_customer.html", context)
 
 
-def page_not_found(request, exception):
-    return render(request, "shopapp/404.html", status=404)
+
+
+

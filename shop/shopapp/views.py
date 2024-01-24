@@ -6,12 +6,24 @@ from django.http import HttpResponse
 from shopapp.forms import LoadImageForProduct
 from django.core.files.storage import FileSystemStorage
 from django.shortcuts import render, get_object_or_404
-from .forms import LoadImageForProduct
+
+
 
 
 def form_for_load_image_for_product(request):
-    
+
     if request.method == 'POST':
+
+        # if request.method =='POST':
+        #     form = ImageForm(request.POST, request.FILES)
+        #     if form.is_valid():
+        #         image = form.cleaned_data['image']
+        #         fs = FileSystemStorage()
+        #         fs.save(image.name, image)
+        # else:
+        #     form = ImageForm()
+        # return render(request, 'shopapp/for_load_image.html', {'form': form})  
+      
         form = LoadImageForProduct(request.POST, request.FILES)
 
         if form.is_valid():
@@ -27,7 +39,7 @@ def form_for_load_image_for_product(request):
 
         else:
             form = LoadImageForProduct()
-        return render(request, 'for_load_image.html', {'form': form})
+        return render(request, 'shopapp/for_load_image.html', {'form': form})
 
 
 def page_not_found(request, exception):

@@ -7,4 +7,3 @@ class LoadImageForProduct(forms.Form):
                                      
     image = forms.IntegerField(widget=forms.FileInput())
 
-    

@@ -24,6 +24,10 @@ def form_for_load_image_for_product(request):
                 product.image.save(image_file.name, image_file)
                 product.save()
 
+        else:
+            form = LoadImageForProduct()
+        return render(request, 'for_load_image.html', {'form': form})
+
 
 def page_not_found(request, exception):
     return render(request, "shopapp/404.html", status=404)
